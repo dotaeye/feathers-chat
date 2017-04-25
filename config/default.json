@@ -1,19 +1,29 @@
 {
-  "host": "localhost",
-  "port": 3030,
-  "public": "../public/",
-  "paginate": {
-    "default": 10,
-    "max": 50
-  },
-  "authentication": {
-    "secret": "b5KqXTye4fVxhGFpwMVZRO3R56wS5LNoJHifwgGOFkB5GfMWvIdrWyQxEJXswhAC",
-    "strategies": [
-      "jwt",
-      "local"
-    ],
-    "path": "/authentication",
-    "service": "users"
-  },
-  "nedb": "../data"
+    "host": "localhost",
+    "port": 3030,
+    "public": "../public/",
+    "paginate": {
+        "default": 10,
+        "max": 50
+    },
+    "authentication": {
+        "secret": "b5KqXTye4fVxhGFpwMVZRO3R56wS5LNoJHifwgGOFkB5GfMWvIdrWyQxEJXswhAC",
+        "strategies": [
+            "jwt",
+            "local"
+        ],
+        "path": "/authentication",
+        "service": "users"
+    },
+    // 短信验证码枚举
+    "codeType": {
+        "login": 1,
+        "register": 2,
+        "forgetPassword": 3,
+        "other": 4
+    },
+    // 短信验证码，过期时间
+    "codeExpired": 5,
+    "nedb": "../data",
+    "mysql": "mysql://root:sqltest@localhost:3306/feathers_chat"
 }

@@ -110,3 +110,8 @@ $RECYCLE.BIN/
 # Others
 data/
 tmp/
+
+# project
+public/react/node_modules
+
+client/node_modules

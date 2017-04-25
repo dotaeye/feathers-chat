@@ -21,6 +21,11 @@
     "semi": [
       "error",
       "always"
-    ]
+    ],
+    "no-console":[0],
+    "comma-dangle": ["error", "never"]
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
 }

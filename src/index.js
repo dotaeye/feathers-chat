@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 'use strict';
-
+// require('../server.babel');
 const logger = require('winston');
 const app = require('./app');
 const port = app.get('port');

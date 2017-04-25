@@ -1,7 +1,5 @@
-'use strict';
-
 // Initializes the `users` service on path `/users`
-const createService = require('feathers-nedb');
+const createService = require('feathers-sequelize');
 const createModel = require('../../models/users.model');
 const hooks = require('./users.hooks');
 const filters = require('./users.filters');
@@ -23,7 +21,7 @@ module.exports = function() {
   // Get our initialized service so that we can register hooks and filters
   const service = app.service('users');
 
-  service.hooks(hooks);
+  service.hooks(hooks(app));
 
   if (service.filter) {
     service.filter(filters);

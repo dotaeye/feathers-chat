@@ -1,15 +1,15 @@
 'use strict';
-
 const path = require('path');
 const favicon = require('serve-favicon');
 const compress = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-
+const winston = require('winston');
 const feathers = require('feathers');
 const configuration = require('feathers-configuration');
 const hooks = require('feathers-hooks');
+const logger = require('feathers-logger');
 const rest = require('feathers-rest');
 const socketio = require('feathers-socketio');
 
@@ -19,22 +19,27 @@ const appHooks = require('./app.hooks');
 
 const authentication = require('./authentication');
 
+const mysql = require('./mysql');
+
 const app = feathers();
 
 // Load app configuration
 app.configure(configuration(path.join(__dirname, '..')));
+
 // Enable CORS, security, compression, favicon and body parsing
 app.use(cors());
 app.use(helmet());
 app.use(compress());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(favicon( path.join(app.get('public'), 'favicon.ico') ));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
 app.use('/', feathers.static(app.get('public')));
 
+app.configure(logger(winston));
 // Set up Plugins and providers
 app.configure(hooks());
+app.configure(mysql);
 app.configure(rest());
 app.configure(socketio());
 
